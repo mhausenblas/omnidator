@@ -3,7 +3,7 @@ The handler script.
 
 @author: Michael Hausenblas, http://sw-app.org/mic.xhtml#i
 @since: 2011-06-11
-@status: inital version
+@status: integrated working version of SchemaOrgProcessor
 """
 import sys
 sys.path.insert(0, 'lib')
@@ -15,6 +15,7 @@ import urllib
 import urllib2
 import StringIO
 import csv
+import datetime
 
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import template
@@ -39,12 +40,13 @@ class NotFoundHandler(webapp.RequestHandler):
 		self.response.out.write(template.render('a404.html', None))
 
 class SchemaOrgHandler(webapp.RequestHandler):
-	def get(self, doc_url):
-		logging.info('Trying to translate document at [%s]' %(urllib.unquote(doc_url)))
+	def get(self):
+		doc_url = urllib.unquote(self.request.get('url'))
+		logging.info('Trying to translate document at [%s]' %doc_url)
 		
 		try:
 			sop = schema_org_processor.SchemaOrgProcessor()
-			sop.parse(urllib.unquote(doc_url))
+			sop.parse(doc_url)
 			self.response.headers.add_header("Access-Control-Allow-Origin", "*") # CORS-enabled
 			self.response.headers['Content-Type'] = 'application/rdf+xml'
 			self.response.out.write(str(sop.dump_data()))

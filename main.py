@@ -22,7 +22,7 @@ from handler import *
 
 
 application = webapp.WSGIApplication([
-						(r'/2/(.*)$', SchemaOrgHandler),
+						(r'/translate', SchemaOrgHandler),
 						(r'/', MainHandler),
 						(r'/.*', NotFoundHandler)
 					],

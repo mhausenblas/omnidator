@@ -1,13 +1,168 @@
 <!DOCTYPE HTML>
 <html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<title>
-			omnidator
-		</title>
-	</head>
-	<body>
-		<h1>API</h1>
-		<div>http://omnidator.appspot.com/2/{URL} ... from Schema.org data (microdata, CSV, etc.) to RDF</div>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>omnidator</title>
+	<link type="text/css" rel="stylesheet" href="/css/style.css" />
+	<script type="text/javascript" src="/js/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="/js/omnidator.js"></script>
+</head>
+<body>
+	<h1>omni<span class="damped">potent</span>dat<span class="damped">a</span><span class="damped">translat</span>or</h1>
+	<div id="menu">
+		<span id="translate" class="active">Translate</span>
+		<span id="help">Help</span>
+	</div>
+	
+	<div id="translate-content">
+		<h2>Translate Schema.org data</h2>
+		<p>URL of the document to translate:</p>
+		<input type="input" id="docURL" size="80" value="https://raw.github.com/mhausenblas/schema-org-rdf/master/tools/schema-gateway/test/solar-system.csv" /> <button id="doTranslate">get me the data!</button>
+		<pre><code id="result"></code></pre>
+	</div><!-- END OF TRANSLATE SECTION -->
+	
+	<div id="help-content">
+		<h2>API</h2>
+		<p>The omnidator provides a simple <a href="http://enable-cors.org/" title="enable cross-origin resource sharing">CORS-enabled</a> API to translate from various formats (currently: microdata, CSV) that use <a href="http://schema.org/" title="schema.org - Home">Schema.org</a> terms to RDF as follows:</p>
+		<div class="API">
+			http://omnidator.appspot.com/translate?url={URL}
+		</div>
+		
+		<p>Internally, omnidator uses the <a href="https://github.com/mhausenblas/schema-org-rdf/tree/master/tools/schema-gateway">Schema.org Gateway</a>, which, in turn, uses Ed Summer's <a href="https://github.com/edsu/rdflib-microdata">rdflib-microdata</a> plugin for processing microdata.</p>
+		<p>For example, invoking the omnidator API as follows (for a CSV file that uses Schema.org terms in the header):</p>
+		<div class="API">
+		<a href="translate?url=https%3A%2F%2Fraw.github.com%2Fmhausenblas%2Fschema-org-rdf%2Fmaster%2Ftools%2Fschema-gateway%2Ftest%2Fsolar-system.csv" target="_new">http://omnidator.appspot.com/translate?url=https://raw.github.com/mhausenblas/schema-org-rdf/master/tools/schema-gateway/test/solar-system.csv</a>
+		</div>
+		<p>yields the following RDF/XML data:</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;rdf:RDF
+   xmlns:dcterms=&quot;http://purl.org/dc/terms/&quot;
+   xmlns:rdf=&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;
+   xmlns:scsv=&quot;http://purl.org/NET/schema-org-csv#&quot;&gt;
+  &lt;rdf:Description rdf:about=&quot;https://raw.github.com/mhausenblas/schema-org-rdf/master/tools/schema-gateway/test/solar-system.csv#table&quot;&gt;
+    &lt;rdf:type rdf:resource=&quot;http://purl.org/NET/schema-org-csv#Table&quot;/&gt;
+    &lt;dcterms:source rdf:resource=&quot;https://raw.github.com/mhausenblas/schema-org-rdf/master/tools/schema-gateway/test/solar-system.csv&quot;/&gt;
+    &lt;scsv:row rdf:resource=&quot;https://raw.github.com/mhausenblas/schema-org-rdf/master/tools/schema-gateway/test/solar-system.csv#row:3&quot;/&gt;
+    &lt;scsv:row rdf:resource=&quot;https://raw.github.com/mhausenblas/schema-org-rdf/master/tools/schema-gateway/test/solar-system.csv#row:4&quot;/&gt;
+    &lt;scsv:row rdf:resource=&quot;https://raw.github.com/mhausenblas/schema-org-rdf/master/tools/schema-gateway/test/solar-system.csv#row:2&quot;/&gt;
+    &lt;scsv:row rdf:resource=&quot;https://raw.github.com/mhausenblas/schema-org-rdf/master/tools/schema-gateway/test/solar-system.csv#row:1&quot;/&gt;
+    &lt;dcterms:title&gt;solar-system.csv&lt;/dcterms:title&gt;
+  &lt;/rdf:Description&gt;
+  &lt;rdf:Description rdf:about=&quot;https://raw.github.com/mhausenblas/schema-org-rdf/master/tools/schema-gateway/test/solar-system.csv#row:3&quot;&gt;
+    &lt;rdf:type rdf:resource=&quot;http://purl.org/NET/schema-org-csv#Row&quot;/&gt;
+    &lt;dcterms:title&gt;row 3&lt;/dcterms:title&gt;
+    &lt;scsv:cell rdf:resource=&quot;https://raw.github.com/mhausenblas/schema-org-rdf/master/tools/schema-gateway/test/solar-system.csv#row:3,col:2&quot;/&gt;
+    &lt;scsv:cell rdf:resource=&quot;https://raw.github.com/mhausenblas/schema-org-rdf/master/tools/schema-gateway/test/solar-system.csv#row:3,col:1&quot;/&gt;
+    &lt;scsv:cell rdf:resource=&quot;https://raw.github.com/mhausenblas/schema-org-rdf/master/tools/schema-gateway/test/solar-system.csv#row:3,col:3&quot;/&gt;
+  &lt;/rdf:Description&gt;
+  &lt;rdf:Description rdf:about=&quot;https://raw.github.com/mhausenblas/schema-org-rdf/master/tools/schema-gateway/test/solar-system.csv#row:4&quot;&gt;
+    &lt;rdf:type rdf:resource=&quot;http://purl.org/NET/schema-org-csv#Row&quot;/&gt;
+    &lt;dcterms:title&gt;row 4&lt;/dcterms:title&gt;
+    &lt;scsv:cell rdf:resource=&quot;https://raw.github.com/mhausenblas/schema-org-rdf/master/tools/schema-gateway/test/solar-system.csv#row:4,col:3&quot;/&gt;
+    &lt;scsv:cell rdf:resource=&quot;https://raw.github.com/mhausenblas/schema-org-rdf/master/tools/schema-gateway/test/solar-system.csv#row:4,col:2&quot;/&gt;
+    &lt;scsv:cell rdf:resource=&quot;https://raw.github.com/mhausenblas/schema-org-rdf/master/tools/schema-gateway/test/solar-system.csv#row:4,col:1&quot;/&gt;
+  &lt;/rdf:Description&gt;
+  &lt;rdf:Description rdf:about=&quot;https://raw.github.com/mhausenblas/schema-org-rdf/master/tools/schema-gateway/test/solar-system.csv#row:2&quot;&gt;
+    &lt;rdf:type rdf:resource=&quot;http://purl.org/NET/schema-org-csv#Row&quot;/&gt;
+    &lt;dcterms:title&gt;row 2&lt;/dcterms:title&gt;
+    &lt;scsv:cell rdf:resource=&quot;https://raw.github.com/mhausenblas/schema-org-rdf/master/tools/schema-gateway/test/solar-system.csv#row:2,col:3&quot;/&gt;
+    &lt;scsv:cell rdf:resource=&quot;https://raw.github.com/mhausenblas/schema-org-rdf/master/tools/schema-gateway/test/solar-system.csv#row:2,col:2&quot;/&gt;
+    &lt;scsv:cell rdf:resource=&quot;https://raw.github.com/mhausenblas/schema-org-rdf/master/tools/schema-gateway/test/solar-system.csv#row:2,col:1&quot;/&gt;
+  &lt;/rdf:Description&gt;
+  &lt;rdf:Description rdf:about=&quot;https://raw.github.com/mhausenblas/schema-org-rdf/master/tools/schema-gateway/test/solar-system.csv#row:1,col:2&quot;&gt;
+    &lt;dcterms:title&gt;Mass&lt;/dcterms:title&gt;
+  &lt;/rdf:Description&gt;
+  &lt;rdf:Description rdf:about=&quot;https://raw.github.com/mhausenblas/schema-org-rdf/master/tools/schema-gateway/test/solar-system.csv#row:1,col:1&quot;&gt;
+    &lt;dcterms:title&gt;Thing&lt;/dcterms:title&gt;
+  &lt;/rdf:Description&gt;
+  &lt;rdf:Description rdf:about=&quot;https://raw.github.com/mhausenblas/schema-org-rdf/master/tools/schema-gateway/test/solar-system.csv#row:3,col:1&quot;&gt;
+    &lt;rdf:type rdf:resource=&quot;http://schema.org/Thing&quot;/&gt;
+    &lt;rdf:value&gt;Mars&lt;/rdf:value&gt;
+  &lt;/rdf:Description&gt;
+  &lt;rdf:Description rdf:about=&quot;https://raw.github.com/mhausenblas/schema-org-rdf/master/tools/schema-gateway/test/solar-system.csv#row:4,col:2&quot;&gt;
+    &lt;rdf:type rdf:resource=&quot;http://schema.org/Mass&quot;/&gt;
+    &lt;rdf:value&gt;1.988435x10^30 kg&lt;/rdf:value&gt;
+  &lt;/rdf:Description&gt;
+  &lt;rdf:Description rdf:about=&quot;https://raw.github.com/mhausenblas/schema-org-rdf/master/tools/schema-gateway/test/solar-system.csv#row:1&quot;&gt;
+    &lt;rdf:type rdf:resource=&quot;http://purl.org/NET/schema-org-csv#HeaderRow&quot;/&gt;
+    &lt;dcterms:title&gt;header&lt;/dcterms:title&gt;
+    &lt;scsv:cell rdf:resource=&quot;https://raw.github.com/mhausenblas/schema-org-rdf/master/tools/schema-gateway/test/solar-system.csv#row:1,col:1&quot;/&gt;
+    &lt;scsv:cell rdf:resource=&quot;https://raw.github.com/mhausenblas/schema-org-rdf/master/tools/schema-gateway/test/solar-system.csv#row:1,col:3&quot;/&gt;
+    &lt;scsv:cell rdf:resource=&quot;https://raw.github.com/mhausenblas/schema-org-rdf/master/tools/schema-gateway/test/solar-system.csv#row:1,col:2&quot;/&gt;
+  &lt;/rdf:Description&gt;
+  &lt;rdf:Description rdf:about=&quot;https://raw.github.com/mhausenblas/schema-org-rdf/master/tools/schema-gateway/test/solar-system.csv#row:2,col:1&quot;&gt;
+    &lt;rdf:type rdf:resource=&quot;http://schema.org/Thing&quot;/&gt;
+    &lt;rdf:value&gt;Earth&lt;/rdf:value&gt;
+  &lt;/rdf:Description&gt;
+  &lt;rdf:Description rdf:about=&quot;https://raw.github.com/mhausenblas/schema-org-rdf/master/tools/schema-gateway/test/solar-system.csv#row:3,col:3&quot;&gt;
+    &lt;rdf:type rdf:resource=&quot;http://schema.org/URL&quot;/&gt;
+    &lt;rdf:value rdf:resource=&quot;http://dbpedia.org/resource/Mars&quot;/&gt;
+  &lt;/rdf:Description&gt;
+  &lt;rdf:Description rdf:about=&quot;https://raw.github.com/mhausenblas/schema-org-rdf/master/tools/schema-gateway/test/solar-system.csv#row:1,col:3&quot;&gt;
+    &lt;dcterms:title&gt;URL&lt;/dcterms:title&gt;
+  &lt;/rdf:Description&gt;
+  &lt;rdf:Description rdf:about=&quot;https://raw.github.com/mhausenblas/schema-org-rdf/master/tools/schema-gateway/test/solar-system.csv#row:2,col:2&quot;&gt;
+    &lt;rdf:type rdf:resource=&quot;http://schema.org/Mass&quot;/&gt;
+    &lt;rdf:value&gt;5.9721986x10^24 kg&lt;/rdf:value&gt;
+  &lt;/rdf:Description&gt;
+  &lt;rdf:Description rdf:about=&quot;https://raw.github.com/mhausenblas/schema-org-rdf/master/tools/schema-gateway/test/solar-system.csv#row:4,col:3&quot;&gt;
+    &lt;rdf:type rdf:resource=&quot;http://schema.org/URL&quot;/&gt;
+    &lt;rdf:value rdf:resource=&quot;http://dbpedia.org/resource/Sun&quot;/&gt;
+  &lt;/rdf:Description&gt;
+  &lt;rdf:Description rdf:about=&quot;https://raw.github.com/mhausenblas/schema-org-rdf/master/tools/schema-gateway/test/solar-system.csv#row:2,col:3&quot;&gt;
+    &lt;rdf:type rdf:resource=&quot;http://schema.org/URL&quot;/&gt;
+    &lt;rdf:value rdf:resource=&quot;http://dbpedia.org/resource/Earth&quot;/&gt;
+  &lt;/rdf:Description&gt;
+  &lt;rdf:Description rdf:about=&quot;https://raw.github.com/mhausenblas/schema-org-rdf/master/tools/schema-gateway/test/solar-system.csv#row:3,col:2&quot;&gt;
+    &lt;rdf:type rdf:resource=&quot;http://schema.org/Mass&quot;/&gt;
+    &lt;rdf:value&gt;6.4191x10^23 kg&lt;/rdf:value&gt;
+  &lt;/rdf:Description&gt;
+  &lt;rdf:Description rdf:about=&quot;https://raw.github.com/mhausenblas/schema-org-rdf/master/tools/schema-gateway/test/solar-system.csv#row:4,col:1&quot;&gt;
+    &lt;rdf:type rdf:resource=&quot;http://schema.org/Thing&quot;/&gt;
+    &lt;rdf:value&gt;Sun&lt;/rdf:value&gt;
+  &lt;/rdf:Description&gt;
+&lt;/rdf:RDF&gt;</code></pre>
+	
+	<p>Another example, a HTML page with Schema.org terms encoded in microdata:</p>
+	<div class="API">
+	<a href="translate?url=https%3A%2F%2Fraw.github.com%2Fmhausenblas%2Fschema-org-rdf%2Fmaster%2Ftools%2Fschema-gateway%2Ftest%2Fmd-test-1.html" target="_new">http://omnidator.appspot.com/translate?url=https://raw.github.com/mhausenblas/schema-org-rdf/master/tools/schema-gateway/test/md-test-1.html</a>
+	</div>
+	<p>yields the following RDF/XML data:</p>
+<pre><code>&lt;rdf:RDF
+   xmlns:ns1=&quot;http://schema.org/Place#&quot;
+   xmlns:ns2=&quot;http://schema.org/PostalAddress#&quot;
+   xmlns:ns3=&quot;http://schema.org/Event#&quot;
+   xmlns:ns4=&quot;http://schema.org/AggregateOffer#&quot;
+   xmlns:rdf=&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;&gt;
+  &lt;rdf:Description rdf:nodeID=&quot;AiPNUuSP8&quot;&gt;
+    &lt;rdf:type rdf:resource=&quot;http://schema.org/AggregateOffer&quot;/&gt;
+    &lt;ns4:offerCount&gt;1,938&lt;/ns4:offerCount&gt;
+    &lt;ns4:lowPrice&gt;$35&lt;/ns4:lowPrice&gt;
+  &lt;/rdf:Description&gt;
+  &lt;rdf:Description rdf:nodeID=&quot;AiPNUuSP9&quot;&gt;
+    &lt;rdf:type rdf:resource=&quot;http://schema.org/Place&quot;/&gt;
+    &lt;ns1:url rdf:resource=&quot;wells-fargo-center.html&quot;/&gt;
+    &lt;ns1:address rdf:nodeID=&quot;AiPNUuSP10&quot;/&gt;
+  &lt;/rdf:Description&gt;
+  &lt;rdf:Description rdf:about=&quot;http://example.org/event123&quot;&gt;
+    &lt;rdf:type rdf:resource=&quot;http://schema.org/Event&quot;/&gt;
+    &lt;ns3:offers rdf:nodeID=&quot;AiPNUuSP8&quot;/&gt;
+    &lt;ns3:startDate&gt;2011-04-21T20:00&lt;/ns3:startDate&gt;
+    &lt;ns3:url rdf:resource=&quot;nba-miami-philidelphia-game3.html&quot;/&gt;
+    &lt;ns3:location rdf:nodeID=&quot;AiPNUuSP9&quot;/&gt;
+  &lt;/rdf:Description&gt;
+  &lt;rdf:Description rdf:nodeID=&quot;AiPNUuSP10&quot;&gt;
+    &lt;rdf:type rdf:resource=&quot;http://schema.org/PostalAddress&quot;/&gt;
+    &lt;ns2:addressRegion&gt;PA&lt;/ns2:addressRegion&gt;
+    &lt;ns2:addressLocality&gt;Philadelphia&lt;/ns2:addressLocality&gt;
+  &lt;/rdf:Description&gt;
+  &lt;rdf:Description rdf:nodeID=&quot;AiPNUuSP11&quot;&gt;
+    &lt;rdf:type rdf:resource=&quot;http://schema.org/Event&quot;/&gt;
+  &lt;/rdf:Description&gt;
+&lt;/rdf:RDF&gt;
+</code></pre>
+	</div><!-- END OF HELP SECTION -->
+	
+		
 	</body>
 </html>
