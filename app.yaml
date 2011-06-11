@@ -1,0 +1,10 @@
+application: omnidator
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+- url: /examples
+  static_dir: examples
+- url: /.*
+  script: main.py
