@@ -32,6 +32,16 @@ h1 span.damped {
 	font-weight: normal;
 }
 
+h2 {
+	font-size: 16pt;
+}
+
+h3 {
+	margin: 2em 0 0 0;
+	font-size: 14pt;
+	color: #909090;
+}
+
 pre {
 	font-size: 10px;
 	padding: 0;
@@ -88,4 +98,16 @@ pre code {
 
 #result {
 	display: none;
+}
+
+.fig {
+	padding: 1em;
+	text-align: center;
+	margin: 0 auto;
+	width: 600px;
+	-moz-box-shadow: 3px 3px 4px #000;
+	-webkit-box-shadow: 3px 3px 4px #000;
+	box-shadow: 3px 3px 4px #000;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
 }

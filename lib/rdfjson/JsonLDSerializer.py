@@ -148,7 +148,7 @@ class JsonLDSerializer(Serializer):
         self.jsonObj["@"].append(subject_dict)
 
     def handle_object(self, predname, obj):
-        print predname + " - " + str(obj)
+        #print predname + " - " + str(obj)
         o = None
         if isinstance(obj, Literal):
             # NOTE: this if/else test works ONLY because obj.datatype and obj.language are
@@ -176,7 +176,7 @@ class JsonLDSerializer(Serializer):
                     o = o[:len(o) - 1]
         else:
             o = obj.n3()
-        print o
+        #print o
         return o
 
     def add_coerced_types(self):
