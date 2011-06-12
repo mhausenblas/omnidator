@@ -11,7 +11,8 @@
 	<h1>omni<span class="damped">potent</span>dat<span class="damped">a</span><span class="damped">translat</span>or</h1>
 	<div id="menu">
 		<span id="translate" class="active">Translate</span>
-		<span id="help">Help</span>
+		<span id="API">API</span>
+		<span id="about">About</span>
 	</div>
 	
 	<div id="translate-content">
@@ -21,14 +22,12 @@
 		<pre><code id="result"></code></pre>
 	</div><!-- END OF TRANSLATE SECTION -->
 	
-	<div id="help-content">
+	<div id="API-content">
 		<h2>API</h2>
 		<p>The omnidator provides a simple <a href="http://enable-cors.org/" title="enable cross-origin resource sharing">CORS-enabled</a> API to translate from various formats (currently: microdata, CSV) that use <a href="http://schema.org/" title="schema.org - Home">Schema.org</a> terms to RDF as follows:</p>
 		<div class="API">
 			http://omnidator.appspot.com/translate?url={URL}
-		</div>
-		
-		<p>Internally, omnidator uses the <a href="https://github.com/mhausenblas/schema-org-rdf/tree/master/tools/schema-gateway">Schema.org Gateway</a>, which, in turn, uses Ed Summer's <a href="https://github.com/edsu/rdflib-microdata">rdflib-microdata</a> plugin for processing microdata.</p>
+		</div>	
 		<p>For example, invoking the omnidator API as follows (for a CSV file that uses Schema.org terms in the header):</p>
 		<div class="API">
 		<a href="translate?url=https%3A%2F%2Fraw.github.com%2Fmhausenblas%2Fschema-org-rdf%2Fmaster%2Ftools%2Fschema-gateway%2Ftest%2Fsolar-system.csv" target="_new">http://omnidator.appspot.com/translate?url=https://raw.github.com/mhausenblas/schema-org-rdf/master/tools/schema-gateway/test/solar-system.csv</a>
@@ -161,8 +160,24 @@
   &lt;/rdf:Description&gt;
 &lt;/rdf:RDF&gt;
 </code></pre>
-	</div><!-- END OF HELP SECTION -->
+	<p>You can use omnidator also to inspect microdata, like so:</p>
+	<div class="API">
+		http://omnidator.appspot.com/mdpretty?url={URL}
+	</div>	
+	<p>For example, invoking the omnidator API as follows:</p>
+	<div class="API">
+	<a href="translate?url=https%3A%2F%2Fraw.github.com%2Fmhausenblas%2Fschema-org-rdf%2Fmaster%2Ftools%2Fschema-gateway%2Ftest%2Fmd-test-1.html" target="_new">http://omnidator.appspot.com/mdpretty?url=https://raw.github.com/mhausenblas/schema-org-rdf/master/tools/schema-gateway/test/md-test-1.html</a>
+	</div>
+	<p>yields the following plain text rendering of the contained items:</p>
+<pre><code>
+</code></pre>
+	</div><!-- END OF API SECTION -->
 	
+	<div id="about-content">
+		<h2>What is omnidator about?</h2>
+		<p>Conceptually, omnidator takes whatever kind of data format that uses Schema.org terms and turns it into any other kind of data format. Internally, omnidator uses the <a href="https://github.com/mhausenblas/schema-org-rdf/tree/master/tools/schema-gateway">Schema.org Gateway</a>, which, in turn, uses Ed Summers' <a href="https://github.com/edsu/rdflib-microdata">rdflib-microdata</a> plugin for processing microdata. The omnidator eats <strong>any kind of data formats</strong> - well, actually at the time only microdata and CSV - and translates it to the data lingua franca RDF. It then <strong>translates the data to any other target data formats</strong>. Yeah, OK, again, currently only native RDF/XML is supported for the output, but we're working on the others, srsly ;).</p> 
+		<p>The following overview diagram renders omnidator's functionality on an abstract level:</p>
+	</div><!-- END OF ABOUT SECTION -->
 		
 	</body>
 </html>

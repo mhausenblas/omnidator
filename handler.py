@@ -28,6 +28,7 @@ from rdflib import plugin
 from rdflib.serializer import Serializer
 
 import schema_org_processor
+import microdata_pp
 
 
 class MainHandler(webapp.RequestHandler):
@@ -52,4 +53,19 @@ class SchemaOrgHandler(webapp.RequestHandler):
 			self.response.out.write(str(sop.dump_data()))
 		except Exception, e:
 			self.error(404)
-			self.response.out.write(e)#template.render('a404.html', None))
+			self.response.out.write(e)
+
+class MicrodataPrettyPrintHandler(webapp.RequestHandler):
+	def get(self):
+		doc_url = urllib.unquote(self.request.get('url'))
+		logging.info('Trying to pretty-print HTML+microdata document at [%s]' %doc_url)
+		
+		try:
+			mdp = microdata_pp.MicrodataPrettyPrinter()
+			mdp.items_from_URL(doc_url)
+			self.response.headers.add_header("Access-Control-Allow-Origin", "*") # CORS-enabled
+			# self.response.headers['Content-Type'] = 'text/plain'
+			self.response.out.write(str(mdp.dump_items()))
+		except Exception, e:
+			self.error(404)
+			self.response.out.write(e)

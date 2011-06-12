@@ -23,6 +23,7 @@ from handler import *
 
 application = webapp.WSGIApplication([
 						(r'/translate', SchemaOrgHandler),
+						(r'/mdpretty', MicrodataPrettyPrintHandler),
 						(r'/', MainHandler),
 						(r'/.*', NotFoundHandler)
 					],

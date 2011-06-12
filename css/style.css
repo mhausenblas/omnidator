@@ -1,5 +1,5 @@
 body { 
-	margin: 0 2em 0 2em; 
+	margin: 0 6em 0 4em; 
 	padding: 0; 
 	background: #fff;
 	font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;  
@@ -7,6 +7,10 @@ body {
 
 img { 
 	border: 0px solid white; 
+}
+
+p {
+	text-align: justify;
 }
 
 a { 
@@ -44,6 +48,10 @@ pre code {
 	display: block;
 }
 
+#translate-content pre {
+	margin: 2em 0 0 0;	
+}
+
 #menu {
 	position: absolute;
 	top: 10px;
@@ -64,11 +72,11 @@ pre code {
 	border-bottom: 3px solid #c0c0c0;
 }
 
-#translate-content, #help-content {
+#translate-content, #API-content, #about-content {
 	margin: 0;
 }
 
-#help-content {
+#API-content, #about-content {
 	display: none;
 }
 
@@ -76,4 +84,8 @@ pre code {
 	margin: 3em;
 	padding: 1em;
 	border: 2px solid #ccc;
+}
+
+#result {
+	display: none;
 }

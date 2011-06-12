@@ -9,7 +9,14 @@ $(function(){
 			dataType: 'text',
 			data: "url=" + escape($("#docURL").val()),
 			success : function(data) {
-				$("#result").html(htmlEntities(data));
+				if(data != 'None'){
+					$("#result").html(htmlEntities(data));
+				}
+				else {
+					$("#result").html("Some error prevented me to show you the result. Blame <a href='http://sw-app.org/mic.xhtml'>Michael</a> ...")
+				}
+				$("#result").slideDown();
+				
 			},
 			error: function(xhr, textStatus, errorThrown){
 				alert("Sorry, there was an error: " + textStatus);
