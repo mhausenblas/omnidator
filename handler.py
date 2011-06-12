@@ -47,6 +47,8 @@ class SchemaOrgHandler(webapp.RequestHandler):
 		
 		try:
 			sop = schema_org_processor.SchemaOrgProcessor()
+			#the following is a nasty hack - SOP should take care of it
+			if doc_url.endswith('/'): doc_url = doc_url + "index.html"
 			sop.parse(doc_url)
 			self.response.headers.add_header("Access-Control-Allow-Origin", "*") # CORS-enabled
 			self.response.headers['Content-Type'] = 'application/rdf+xml'
