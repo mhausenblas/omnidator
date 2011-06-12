@@ -166,11 +166,39 @@
 	</div>	
 	<p>For example, invoking the omnidator API as follows:</p>
 	<div class="API">
-	<a href="translate?url=https%3A%2F%2Fraw.github.com%2Fmhausenblas%2Fschema-org-rdf%2Fmaster%2Ftools%2Fschema-gateway%2Ftest%2Fmd-test-1.html" target="_new">http://omnidator.appspot.com/mdpretty?url=https://raw.github.com/mhausenblas/schema-org-rdf/master/tools/schema-gateway/test/md-test-1.html</a>
+	<a href="mdpretty?url=https%3A%2F%2Fraw.github.com%2Fmhausenblas%2Fschema-org-rdf%2Fmaster%2Ftools%2Fschema-gateway%2Ftest%2Fmd-test-1.html" target="_new">http://omnidator.appspot.com/mdpretty?url=https://raw.github.com/mhausenblas/schema-org-rdf/master/tools/schema-gateway/test/md-test-1.html</a>
 	</div>
-	<p>yields the following plain text rendering of the contained items:</p>
-<pre><code>
-</code></pre>
+	<p>yields the following (text/plain) rendering of the contained items:</p>
+<pre><code>********************************************************************************
+7 data items found in total:
+--------------------------------------------------------------------------------
+ITEM (http://example.org/event123) OF TYPE (http://schema.org/Event) {
+  url = nba-miami-philidelphia-game3.html
+  startDate = 2011-04-21T20:00
+  offers ->
+  ITEM (anonymous::cb1f06fa-94f2-11e0-a963-0d6c9d121c6d) OF TYPE (http://schema.org/AggregateOffer) {
+    lowPrice = $35
+    offerCount = 1,938
+  }
+  location ->
+  ITEM (anonymous::cb1f0a87-94f2-11e0-be0d-0d6c9d121c6d) OF TYPE (http://schema.org/Place) {
+    url = wells-fargo-center.html
+    address ->
+    ITEM (anonymous::cb1f0d11-94f2-11e0-8a1d-0d6c9d121c6d) OF TYPE (http://schema.org/PostalAddress) {
+      addressLocality = Philadelphia
+      addressRegion = PA
+    }
+  }
+}
+--------------------------------------------------------------------------------
+ITEM (http://example.org/event456) {
+}
+--------------------------------------------------------------------------------
+ITEM (anonymous::cb1f123a-94f2-11e0-a890-0d6c9d121c6d) OF TYPE (http://schema.org/Event) {
+}
+--------------------------------------------------------------------------------
+ITEM (anonymous::cb1f1423-94f2-11e0-916f-0d6c9d121c6d) {
+}</code></pre>
 	</div><!-- END OF API SECTION -->
 	
 	<div id="about-content">
