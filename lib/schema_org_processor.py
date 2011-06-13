@@ -57,7 +57,7 @@ class SchemaOrgProcessor(object):
 	def parse_csv(self, doc_url):
 		self.doc_url = doc_url
 		self.g = rdflib.Graph()
-		self.g.parse(location=doc_url, format="schemaorg_csv", csv_file_URI=self.doc_url)
+		self.g.parse(location=doc_url, format="schemaorg_csv", csv_file_URI=doc_url)
 	
 	def parse_microdata(self, doc_url):
 		self.doc_url = doc_url

@@ -3,11 +3,14 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>omnidator</title>
-	<link type="text/css" rel="stylesheet" href="/css/style.css" />
-	<script type="text/javascript" src="/js/jquery-1.4.2.min.js"></script>
-	<script type="text/javascript" src="/js/omnidator.js"></script>
+	<link rel="stylesheet" href="/css/overcast/jquery-ui-1.8.13.custom.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="/css/style.css" type="text/css" />
+	<script src="/js/jquery-1.4.2.min.js"></script>
+	<script src="/js/jquery-ui-1.8.13.custom.min.js"></script>
+	<script src="/js/omnidator.js"></script>
 </head>
 <body>
+	<a href="https://github.com/mhausenblas/omnidator"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://d3nwyuy0nl342s.cloudfront.net/img/edc6dae7a1079163caf7f17c60495bbb6d027c93/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub"></a>
 	<h1>omni<span class="damped">potent</span>dat<span class="damped">a</span><span class="damped">translat</span>or</h1>
 	<div id="menu">
 		<span id="translate" class="active">Translate</span>
@@ -18,8 +21,23 @@
 	<div id="translate-content">
 		<h2>Translate Schema.org data</h2>
 		<p>URL of the document to translate:</p>
-		<input type="input" id="docURL" size="80" value="https://raw.github.com/mhausenblas/schema-org-rdf/master/tools/schema-gateway/test/solar-system.csv" /> <button id="doTranslate">get me the data!</button>
-		<pre><code id="result"></code></pre>
+		<div class="ui-widget">
+			<input type="input" id="docURL" size="60" value="http://omnidator.appspot.com/examples/solar-system.csv" /> <button id="doTranslate">translate!</button>
+			<div id="fromtosel">
+				from:
+				<select id="from" size="1">
+					<option value="csv">CSV</option>
+					<option value="microdata">HTML/Microdata</option>
+				</select>
+				to:
+				<select id="to" size="1">
+					<option value="json">JSON</option>
+					<option value="rdf-xml">RDF/XML</option>
+					<option value="rdf-turtle">RDF/Turtle</option>
+				</select>
+			</div>
+		</div>
+		<pre id="resultcontainer"><code id="result"></code></pre>
 	</div><!-- END OF TRANSLATE SECTION -->
 	
 	<div id="API-content">
@@ -314,6 +332,11 @@ ITEM (anonymous::cb1f1423-94f2-11e0-916f-0d6c9d121c6d) {
 		<div class="fig"><img src="/img/omnidator-concept.png" alt="omnidator concept"></div>
 		<p>The omnidator eats <strong>any kind of data formats</strong> - well, actually at the time only microdata and CSV - and translates it to the data lingua franca RDF. It then <strong>translates the data to any other target data formats</strong>. Yeah, OK, again, currently only native RDF/XML is supported for the output, but we're working on the others, srsly ;).</p> 
 	</div><!-- END OF ABOUT SECTION -->
-		
+	
+	<div id="footer">
+		<div id="footer-content">
+		Last update on: 2011-06-13 | <a href="https://github.com/mhausenblas/omnidator">Code</a> | <a href="mailto:&#x6D;&#x69;&#x63;&#x68;&#x61;&#x65;&#x6C;&#x2E;&#x68;&#x61;&#x75;&#x73;&#x65;&#x6E;&#x62;&#x6C;&#x61;&#x73;&#x40;&#x67;&#x6D;&#x61;&#x69;&#x6C;&#x2E;&#x63;&#x6F;&#x6D;">Contact</a>
+		</div>
+	</div>
 	</body>
 </html>

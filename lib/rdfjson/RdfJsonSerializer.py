@@ -32,6 +32,9 @@ plugin.register("rdf-json-pretty", Serializer, "rdfjson.RdfJsonSerializer", "Pre
 g.serialize(None, "rdf-json-pretty")
 """
 
+import sys
+sys.path.insert(0, 'lib')
+
 from rdflib.serializer import Serializer
 
 from rdflib.term import URIRef
@@ -49,10 +52,6 @@ from rdflib.namespace import split_uri
 
 from xml.sax.saxutils import quoteattr, escape
 
-try:
-    import json
-except ImportError:
-    import simplejson as json
 
 class RdfJsonSerializer(Serializer):
 
@@ -70,7 +69,6 @@ class RdfJsonSerializer(Serializer):
         self.__serialized = {}
         self.write = lambda u: stream.write(u.encode(self.encoding, 'replace'))
         self.jsonObj = {}
-
         self.initObj()
 
         for subject in self.store.subjects():

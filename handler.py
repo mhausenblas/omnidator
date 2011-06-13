@@ -106,16 +106,23 @@ class FromToHandler(webapp.RequestHandler):
 								r = sop.dump_data(format='xml')
 								if r: self.response.out.write(str(r))
 								else:
+									logging.info('ERROR outputting %s' %out_format)
 									self._error_translating()
 							elif out_format == 'rdf-turtle':
 								r = sop.dump_data(format='turtle')
 								if r: self.response.out.write(str(r))
 								else:
+									logging.info('ERROR outputting %s' %out_format)
 									self._error_translating()
 							elif out_format == 'json':
-	 							self.response.out.write(str(sop.get_data().serialize(None, "json-ld")))
-							else:
-								self._error_translating()
+								self.response.out.write(str(sop.get_data().serialize(None, "json-ld")))
+								#r = sop.get_data().serialize(format="json-ld")
+								#r = sop.dump_data(format="rdf-json-pretty")
+								# if r:
+								# 	self.response.out.write(str(r))
+								# else:
+								# 	logging.info('ERROR outputting %s - got %s' %(out_format, r))
+								# 	self._error_translating()
 						else:
 							logging.info('Parsing input format %s was not successful' %(in_format))
 							self._error_translating()
@@ -146,8 +153,7 @@ class FromToHandler(webapp.RequestHandler):
 		self.response.out.write('\nOUTPUT FORMATS:\n')
 		for f in FromToHandler.OUTFORMATS:
 			self.response.out.write(" " + f + " (served as: %s) "%FromToHandler.OUTFORMATS[f] + "\n")
-	
-			
+
 	def _error_translating(self):
 		self.error(404)
 		self.response.out.write(template.render('a404.html', None))

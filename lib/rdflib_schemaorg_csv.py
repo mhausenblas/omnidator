@@ -9,10 +9,9 @@ directly, since it's a plugin. You'll just want to:
 >>> g.parse("test.csv", format="schemaorg_csv")
 >>> print g.serialize()
 """
-
+import sys
 import csv
 import StringIO
-import sys
 from rdflib import URIRef, Literal, BNode, Namespace, RDF
 from rdflib.plugin import register
 from rdflib.parser import Parser

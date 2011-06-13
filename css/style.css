@@ -1,5 +1,5 @@
 body { 
-	margin: 0 6em 0 4em; 
+	margin: 4em 6em 0 4em; 
 	padding: 0; 
 	background: #fff;
 	font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;  
@@ -82,6 +82,22 @@ pre code {
 	border-bottom: 3px solid #c0c0c0;
 }
 
+#docURL {
+	font-size: 130%;
+}
+
+#doTranslate {
+	font-size: 140%;	
+}
+
+#from, #to {
+	font-size: 80%;
+}
+
+#fromtosel {
+	margin: 1.5em 0 0 0;
+}
+
 #translate-content, #API-content, #about-content {
 	margin: 0;
 }
@@ -96,7 +112,7 @@ pre code {
 	border: 2px solid #ccc;
 }
 
-#result {
+#resultcontainer {
 	display: none;
 }
 
@@ -110,4 +126,16 @@ pre code {
 	box-shadow: 3px 3px 4px #000;
 	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
 	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
+}
+
+#footer {
+	width: 300px;
+	text-align: center;
+	margin: 0 auto;
+}
+
+#footer-content {
+	font-size: 8pt;
+	color: #666;
+	padding: 0 0 .5em 0;
 }
