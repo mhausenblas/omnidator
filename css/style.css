@@ -93,6 +93,7 @@ pre code {
 #translate-examples-content {
 	margin: .3em 0 0 0;
 	font-size: 80%;
+/*	text-align: left;*/
 }
 
 .translate-examples {
@@ -114,14 +115,23 @@ pre code {
 	margin: 0;
 }
 
+#translate-content {
+	padding: 3em 0 0 0;
+	text-align: center;
+}
+
+
 #API-content, #about-content {
 	display: none;
 }
 
 .API {
-	margin: 3em;
+	margin: 2em 1em 2em 1em;
 	padding: 1em;
-	border: 2px solid #ccc;
+	border: 2px solid #181;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
 }
 
 #resultcontainer {
@@ -149,6 +159,7 @@ pre code {
 	width: 580px;
 	text-align: center;
 	margin: 0 auto;
+	
 }
 
 #footer-content {

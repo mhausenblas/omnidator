@@ -19,8 +19,8 @@
 	</div>
 	
 	<div id="translate-content">
-		<h2>Translate Schema.org data</h2>
-		<p>URL of the document to translate:</p>
+		<h2>Translate <a href="http://schema.org/">Schema.org</a> data</h2>
+		<!-- <p>URL of the document to translate:</p> -->
 		<div class="ui-widget">
 			<input type="url" id="docURL" size="60" placeholder="URL of the input data source" /> <button id="doTranslate">translate!</button>
 			<div id="translate-examples-content">Examples: <span class="translate-examples">CSV to JSON</span> · <span class="translate-examples">Microdata to RDF/Turtle</span></div>
@@ -43,8 +43,13 @@
 	
 	<div id="API-content">
 		<h2>API</h2>
-		<p>The omnidator provides a simple <a href="http://enable-cors.org/" title="enable cross-origin resource sharing">CORS-enabled</a> API to translate from various formats (currently: microdata, CSV) that use <a href="http://schema.org/" title="schema.org - Home">Schema.org</a> terms to RDF as described in the following.</p>
-		<h3>Main API</h3>
+		<p>The omnidator provides a set of simple <a href="http://enable-cors.org/" title="enable cross-origin resource sharing">CORS-enabled</a> APIs to translate <em>from</em> various data formats that use <a href="http://schema.org/" title="schema.org - Home">Schema.org</a> terms <em>to</em> various data formats:</p>
+		<ul>
+			<li><a href="#main-api">Main API</a></li>
+			<li><a href="#low-level-api">Low-level API</a></li>
+			<li><a href="#md-api">Microdata API</a></li>
+		</ul>	
+		<h3 id="main-api">Main API</h3>
 		<div class="API">
 			http://omnidator.appspot.com/{from}/{to}/?url={URL}
 		</div>
@@ -57,6 +62,7 @@ OUTPUT FORMATS:
  json (served as: application/json) 
  rdf-xml (served as: application/rdf+xml) 
  rdf-turtle (served as: text/turtle)</code></pre>
+		<p>The <code>{URL}</code> is the HTTP URI (address) of the data source, such as a HTML+microdata document or a CSV file.</p>
 		<p>For example, invoking the omnidator API as follows (for translating a <a href="https://raw.github.com/mhausenblas/schema-org-rdf/master/tools/schema-gateway/test/solar-system.csv">CSV file</a> that uses Schema.org terms in the header):</p>
 		<div class="API">
 			<a href="csv/json/?url=https%3A%2F%2Fraw.github.com%2Fmhausenblas%2Fschema-org-rdf%2Fmaster%2Ftools%2Fschema-gateway%2Ftest%2Fsolar-system.csv" target="_blank">http://omnidator.appspot.com/csv/json/?url=https://raw.github.com/mhausenblas/schema-org-rdf/master/tools/schema-gateway/test/solar-system.csv</a>
@@ -183,7 +189,7 @@ OUTPUT FORMATS:
 </code></pre>
 		
 		
-		<h3>Low-Level API</h3>
+		<h3 id="low-level-api">Low-Level API</h3>
 		<p>The omnidator also has a low-level API that takes data formats (the same as the above INPUT FORMATS) as input. We 'guess' the type of input format via sniffing, the output is fixed to RDF/Turtle - as you may guess, the low-level API is more for experimenting with omnidator's internal workings.
 		<div class="API">
 			http://omnidator.appspot.com/translate?url={URL}
@@ -285,6 +291,8 @@ OUTPUT FORMATS:
     ns1:url &lt;nba-miami-philidelphia-game3.html&gt; .
 
 [] a &lt;http://schema.org/Event&gt; .</code></pre>
+	
+	<h3 id="md-api">Microdata API</h3>
 	<p>You can use omnidator also to inspect microdata, like so:</p>
 	<div class="API">
 		http://omnidator.appspot.com/mdpretty?url={URL}
@@ -347,7 +355,7 @@ ITEM (anonymous::cb1f1423-94f2-11e0-916f-0d6c9d121c6d) {
 	</div><!-- END OF ABOUT SECTION -->
 	
 	<div id="footer">
-		<div id="footer-content">Last update on: 2011-06-14 | <a href="https://github.com/mhausenblas/omnidator">Code</a> is Public Domain | Complaints? Suggestions? Contact <a href="mailto:&#x6D;&#x69;&#x63;&#x68;&#x61;&#x65;&#x6C;&#x2E;&#x68;&#x61;&#x75;&#x73;&#x65;&#x6E;&#x62;&#x6C;&#x61;&#x73;&#x40;&#x67;&#x6D;&#x61;&#x69;&#x6C;&#x2E;&#x63;&#x6F;&#x6D;">us</a>! | <a href="http://code.google.com/appengine/"><img src="http://code.google.com/appengine/images/appengine-noborder-120x30.gif" alt="Powered by Google App Engine" style="width: 80px; float:right; margin:0"/></a> 
+		<div id="footer-content">Last update on: 2011-06-15 | <a href="https://github.com/mhausenblas/omnidator">Code</a> is Public Domain | Complaints? Suggestions? Contact <a href="mailto:&#x6D;&#x69;&#x63;&#x68;&#x61;&#x65;&#x6C;&#x2E;&#x68;&#x61;&#x75;&#x73;&#x65;&#x6E;&#x62;&#x6C;&#x61;&#x73;&#x40;&#x67;&#x6D;&#x61;&#x69;&#x6C;&#x2E;&#x63;&#x6F;&#x6D;">us</a>! | <a href="http://code.google.com/appengine/"><img src="http://code.google.com/appengine/images/appengine-noborder-120x30.gif" alt="Powered by Google App Engine" style="width: 80px; float:right; margin:0"/></a> 
 		</div>
 	</div>
 	</body>
