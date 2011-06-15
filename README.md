@@ -1,7 +1,10 @@
-# The Omnidator
+# The omnidator
 
-A [Schema Gateway](https://github.com/mhausenblas/schema-org-rdf/tree/master/tools/schema-gateway) deployment on App Engine.
+Conceptually, omnidator takes whatever kind of data format that uses [Schema.org](http://schema.org) terms and turns it into any other kind of data format:
 
+![omnidator concept](https://github.com/mhausenblas/omnidator/raw/master/img/omnidator-concept.png "omnidator concept")
+
+Technically, omnidator is a web application written in Python, using the [Schema Gateway](https://github.com/mhausenblas/schema-org-rdf/tree/master/tools/schema-gateway) and deployed on [Google App Engine](http://code.google.com/appengine/): see [http://omnidator.appspot.com/](http://omnidator.appspot.com/) for the live instance.
 
 ## Ack
 
