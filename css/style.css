@@ -136,6 +136,7 @@ pre code {
 
 #resultcontainer {
 	display: none;
+	text-align: left;
 }
 
 .fig {
